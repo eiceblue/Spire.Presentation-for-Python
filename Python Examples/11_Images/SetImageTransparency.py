@@ -1,5 +1,7 @@
 from spire.presentation.common import *
 from spire.presentation import *
+#pip install Pillow
+from PIL import Image
 
 outputFile = "SetImageTransparency.pptx"
 
@@ -10,9 +12,9 @@ ppt = Presentation()
 #Create an Image from the specified file
 imagePath = "./Data/Logo1.png"
 
-image = Image.FromFile(imagePath)
-width = image.Width
-height = image.Height
+image = Image.open(imagePath)
+width = image.width
+height = image.height
 rect1 = RectangleF.FromLTRB (200, 100, width+200, height+100)
 #Add a shape
 shape = ppt.Slides[0].Shapes.AppendShape(ShapeType.Rectangle, rect1)

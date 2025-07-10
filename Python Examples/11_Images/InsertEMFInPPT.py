@@ -1,5 +1,7 @@
 from spire.presentation.common import *
 from spire.presentation import *
+#pip install Pillow
+from PIL import Image
 
 
 inputFile = "./Data/BlankSample_N.pptx"
@@ -14,9 +16,9 @@ presentation.LoadFromFile(inputFile)
 ImageFile = "./Data/InsertEMF.emf"
 
 #Define image size
-img = Image.FromFile(ImageFile)
-width = img.Width / 1.5
-height = img.Height / 1.5
+img = Image.open(ImageFile)
+width = img.width / 1.5
+height = img.height / 1.5
 rect = RectangleF.FromLTRB (100, 100, width+100, height+100)
 
 #Append the EMF in slide
