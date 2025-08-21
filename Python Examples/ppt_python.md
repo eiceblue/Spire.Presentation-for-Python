@@ -1,5 +1,3 @@
-# Python代码核心功能提取
-
 # Spire.Presentation Python Hello World
 ## Create a simple presentation with "Hello World" text
 ```python
@@ -6790,4 +6788,5 @@ presentation.Dispose()
 ```
 
 ---
+
 
