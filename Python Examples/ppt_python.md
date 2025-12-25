@@ -6788,5 +6788,111 @@ presentation.Dispose()
 ```
 
 ---
+# spire.presentation text format
+## Get display format of text range in presentation
+```python
+# Get the first shape
+shape = presentation.Slides[0].Shapes[0]
+# Retrieve the text area in the first paragraph of the shape
+textrange = shape.TextFrame.Paragraphs[0].TextRanges[0]
+# Obtain the DisplayFormat property of the text area
+displayformat = textrange.DisplayFormat
+```
+
+---
+
+# Get SmartArt position
+## Extract top and left positions of SmartArt shapes in a presentation
+```python
+sb = []
+
+# Get custom document properties
+for shape in presentation.Slides[0].Shapes:
+    if isinstance(shape, ISmartArt):
+        sa = shape
+        sb.append(f"left: {sa.Left}")
+        sb.append(f"top: {sa.Top}")
+```
+
+---
+
+# Save PowerPoint Shapes as SVG
+## Extract shapes from PowerPoint slides and save them as SVG files
+```python
+# Define file paths
+inputFile = "input.pptx"
+outputFile = "output/"
+
+# Create a presentation object
+presentation = Presentation()
+
+# Load a PowerPoint file
+presentation.LoadFromFile(inputFile)
+
+# Initialize counter for file names
+m = 0
+
+# Loop through each slide
+for slide in presentation.Slides:
+    # Loop through each shape in the slide
+    for shape in slide.Shapes:
+        # Save shape as SVG stream
+        svg_stream = shape.SaveAsSvgInSlide()
+        # Save the stream to a file
+        svg_stream.Save(f"{outputFile}{m}.svg")
+        # Clean up the stream
+        svg_stream.Flush()
+        svg_stream.Close()
+        # Increment counter
+        m += 1
+
+# Dispose of the presentation
+presentation.Dispose()
+```
+
+---
+
+# PowerPoint Shape to SVG Converter
+## Convert shapes in PowerPoint presentations to SVG format
+```python
+# Counter for sequential SVG file names
+m = 0
+# Iterate through slides in the presentation
+for i in range(0, presentation.Slides.Count):
+    slide = presentation.Slides[i]
+    # Iterate through shapes in the slide
+    for j in range(slide.Shapes.Count):
+        shape = slide.Shapes[j]
+        # Convert shape to SVG
+        stream = shape.SaveAsSvg()
+        # Save SVG to file
+        stream.Save("SvgFile_" + str(m) + ".svg")
+        # Clean up
+        stream.Flush()
+        stream.Close()
+        # Increment counter
+        m = m + 1
+```
+
+---
+
+# Get slides from a PowerPoint section
+## This code demonstrates how to retrieve slides from a specific section in a PowerPoint presentation
+
+```python
+# Get the first section
+section = ppt.SectionList[0]
+
+# Get slide list from the section
+slides = section.GetSlides()
+
+# Process each slide in the section
+for i, slide in enumerate(slides):
+    # Get slide ID
+    slide_id = slide.SlideID
+```
+
+---
+
 
 
